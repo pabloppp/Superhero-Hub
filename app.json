@@ -1,0 +1,14 @@
+{
+  "name": "superherohub",
+  "description": "...",
+  "keywords": [
+    "dokku",
+    "rails",
+    "superhero"
+  ],
+  "scripts": {
+    "dokku": {
+      "postdeploy": "bundle exec rake db:migrate"
+    }
+  }
+}

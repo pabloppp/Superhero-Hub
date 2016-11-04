@@ -1,0 +1,42 @@
+<%= form_for @superhero , :url => @form_url do |f| %>
+  <% if @superhero.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@superhero.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @superhero.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <!--<%= f.label :name %><br>-->
+    <%= f.text_field :name, :class=>'simple-input', :placeholder=>'Full name of the hero. If he or she has multiple names, separate them by comas' %>
+  </p>
+
+  <p>
+    <!--<%= f.label :image_url %><br>-->
+    <%= f.text_field :image_url, :class=>'simple-input', :placeholder=>'Url of an image of the hero (from comics, movies or real life)' %>
+  </p>
+
+  <p>
+    <%= f.text_field :superpowers, :class=>'simple-input', :placeholder=>'List of powers separated by comas' %>
+  </p>
+
+  <p>
+    <%= f.text_area :description, :class=>'big-input', :placeholder=>'A short (or long) description of the hero' %>
+  </p>
+
+  <p>
+    <%= f.text_field :creator, :class=>'simple-input small', :placeholder=>'Author of this superhero' %><!--
+    --><%= f.text_field :studio, :class=>'simple-input small', :placeholder=>'Studio from the hero (DC, Marvel, etc...)' %>
+  </p>
+
+  <p>
+    <%= f.submit 'Save superhero', :class => 'submit-button' %>
+  </p>
+<% end %>

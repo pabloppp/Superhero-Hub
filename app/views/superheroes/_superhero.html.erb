@@ -1,0 +1,11 @@
+<%= link_to superhero do %><div class="preview">
+    <%= image_tag superhero.image_url, :class=>'preview-image' %>
+    <div class="likes">
+      <i class="fa fa-heart"></i>
+      <%= superhero.likes.present? ? superhero.likes.inject(0){|sum,x| sum + x.value }*1.0/superhero.likes.length : 0 %>
+    </div>
+    <div class="foot">
+      <%= superhero.name.split(',')[0] %>
+      <span class="small"><%= superhero.name.split(',').drop(1).join(', ')%></span>
+    </div>
+</div><% end %>

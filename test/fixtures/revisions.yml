@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  image_url: MyText
+  superpowers: MyText
+  creator: MyText
+  studio: MyText
+  superhero_id: 
+
+two:
+  name: MyString
+  description: MyText
+  image_url: MyText
+  superpowers: MyText
+  creator: MyText
+  studio: MyText
+  superhero_id: 

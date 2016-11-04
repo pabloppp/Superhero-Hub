@@ -1,0 +1,104 @@
+
+<div class='navbar'>
+  <%= link_to '', superheroes_path, :class => 'back-button fa fa-arrow-left' %>
+  <span id="hero-name" class='hero-name'>
+    <%=@superhero.name.split(',')[0]%>
+    <span class="small"><%= @superhero.name.split(',').drop(1).join(', ')%></span>
+  </span>
+  <%= link_to edit_superhero_path(@superhero), :class=>"button-right inverse"  do %>
+    <i class="fa fa-pencil"></i> <!-- Edit -->
+  <% end %>
+</div>
+
+<div class="info-container" onmousemove="showLikes(event)">
+  <%= image_tag @superhero.image_url, :class=>'banner-image' %>
+  <!--<h1><%= @superhero.name %></h1>-->
+  <div class="likes">
+    <i class="fa fa-heart"></i>
+    <span id="likesAvg">
+      <%= @likes.present? ? @likes.inject(0){|sum,x| sum + x.value }*1.0/@likes.length : 0 %>
+    </span>
+    <span class="small">/5</span>
+    <div class="youlike" onmouseout="resetLikes(event)" id="likes-hub">
+      <i class='fa fa-heart-o' onmouseover="showPossibleLikes(event)" onclick="dolike(<%= @superhero.id %>, 1)"></i>
+      <i class='fa fa-heart-o' onmouseover="showPossibleLikes(event)" onclick="dolike(<%= @superhero.id %>, 2)"></i>
+      <i class='fa fa-heart-o' onmouseover="showPossibleLikes(event)" onclick="dolike(<%= @superhero.id %>, 3)"></i>
+      <i class='fa fa-heart-o' onmouseover="showPossibleLikes(event)" onclick="dolike(<%= @superhero.id %>, 4)"></i>
+      <i class='fa fa-heart-o' onmouseover="showPossibleLikes(event)" onclick="dolike(<%= @superhero.id %>, 5)"></i>
+      <!--<span class="small">You</span>-->
+    </div>
+  </div>
+
+  <form name="like" style="display: none" id="like-form" action="POST">
+    <input type="text" name="like[id]"/>
+    <input type="number" name="like[value]"/>
+  </form>
+  <script>
+    var user_ip = '<%= request.remote_ip %>';
+    var current_user_likes = <%= @user_like.present? ? @user_like.value : 0 %>
+    var totalLikes = <%= @likes.length %>
+  </script>
+
+  <p>
+    <%= simple_format(auto_link(@superhero.description)) %>
+  </p>
+
+  <hr />
+  <p>
+    <b>Powers:</b><br />
+    <% @superhero.superpowers.split(',').each do |power| %>
+      <%= link_to '/search?s='+power.strip, :class => 'power-tag' do %>
+        <%= power.strip %>
+      <% end %>
+    <% end %>
+  </p>
+  <% if (@superhero.name.split(',')).length > 1 %>
+    <hr />
+    <p>
+      <b>Alternative names:</b><br />
+      <%= @superhero.name.split(',').drop(1).join(', ')%>
+    </p>
+  <% end %>
+
+  <% if @superhero.creator.present? %>
+    <hr />
+    <p>
+      <b>Created by:</b><br />
+      <!-- <%= @superhero.creator  %> -->
+      <% @superhero.creator.split(',').each.with_index do |creator, index| -%>
+        <%= link_to '/search?s='+creator.strip, :class => 'hidden-link' do -%>
+          <%= creator.strip -%>
+        <% end %><% if (index < @superhero.creator.split(',').length-1) %> - <% end %>
+      <% end %>
+    </p>
+  <% end %>
+
+  <% if @superhero.studio.present? %>
+  <hr />
+    <p>
+      <b>Studio:</b><br />
+      <!--<%= link_to '/search?s='+@superhero.studio, :class => 'hidden-link' do %>
+        <%= @superhero.studio %>
+      <% end %>-->
+      <% @superhero.studio.split(',').each.with_index do |studio, index| -%>
+        <%= link_to '/search?s='+studio.strip, :class => 'hidden-link' do -%>
+          <%= studio.strip -%>
+        <% end %><% if (index < @superhero.studio.split(',').length-1) %> - <% end %>
+      <% end %>
+    </p>
+  <% end %>
+
+</div>
+
+<br />
+
+<div class="revision-link-container">
+  <%= link_to "#{@superhero.id}/revisions", :class => 'revision-link' do %>
+    Inspect old revisions
+  <% end %>
+</div>
+
+<br />
+<br />
+
+

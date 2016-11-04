@@ -1,0 +1,19 @@
+
+<div class='navbar'>
+  <%= link_to '', superheroes_path, :class => 'back-button fa fa-arrow-left' %>
+  <span id="hero-name" class='hero-name'>Search</span>
+  <!--<%= link_to new_superhero_path, :class=>"button-right"  do %>
+    <i class="fa fa-plus"></i> New Hero
+  <% end %>-->
+</div>
+
+<%= render partial: 'superheroes/search_form', locals: {banner: false, results: @results, preload: @q}-%>
+
+<% if @results.length > 0 %>
+  <div class="herolist-container">
+    <span class="section"><%= @results.length %> search results for <b><%= @q %></b></span>
+    <% @results.each do |superhero| -%><!--
+    --><%= render partial: 'superheroes/superhero', locals: {superhero:superhero} -%><!--
+    --><% end -%>
+  </div>
+<% end %>

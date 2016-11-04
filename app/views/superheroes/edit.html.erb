@@ -1,0 +1,15 @@
+<div class='navbar'>
+  <%= link_to '', superhero_path(@superhero), :class => 'back-button fa fa-arrow-left' %>
+  Edit superhero
+  <%= link_to superhero_path(@superhero), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"button-right inverse"  do %>
+    <i class="fa fa-trash"></i> <!-- DELETE -->
+  <% end %>
+
+</div>
+
+<div class="newhero-container">
+  <p>
+    Edit or improve this superhero's file.
+  </p>
+  <%= render 'form' %>
+</div>

@@ -1,0 +1,37 @@
+<div class='navbar'>
+  <%= link_to '', superhero_path(@superhero), :class => 'back-button fa fa-arrow-left' %>
+  File revisions
+</div>
+
+<div class="revision-container">
+  This supehero has <%= @revisions.length %> revisions.
+  <br /><br />
+  <% @revisions.each.with_index do |rev, index| -%>
+    <div class="date-block">
+      <span class="date">
+        Edited <%= time_ago_in_words(rev.created_at) %> ago
+      </span><!--
+      --><span class="date">Current</span>
+    </div>
+    <div class="entry">
+      <%= render partial: 'superheroes/revision_block', locals: {
+        rev: rev, field: 'name'}-%>
+      <%= render partial: 'superheroes/revision_block', locals: {
+        rev: rev, field: 'description'}-%>
+      <%= render partial: 'superheroes/revision_block', locals: {
+        rev: rev, field: 'image_url'}-%>
+      <%= render partial: 'superheroes/revision_block', locals: {
+        rev: rev, field: 'superpowers'}-%>
+      <%= render partial: 'superheroes/revision_block', locals: {
+        rev: rev, field: 'creator'}-%>
+      <%= render partial: 'superheroes/revision_block', locals: {
+        rev: rev, field: 'studio'}-%>
+
+      <%= link_to "revisions/#{rev.id}", method: :patch, data: { confirm: 'Are you sure?' }, :class => 'reset-button' do %>
+        RESET
+      <% end %>
+
+    </div>
+  <% end %>
+
+</div>

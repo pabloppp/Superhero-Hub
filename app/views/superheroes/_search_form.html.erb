@@ -1,0 +1,26 @@
+<div class="search-cont">
+
+  <form action="/search" method="get">
+    <input name="s" class="search-input" type="search" placeholder="🔎 Hero's name, superpower, author or studio..." value="<%= defined?(preload) ? preload : '' %>"/>
+    <button class="search-button">SEARCH</button>
+  </form>
+
+
+  <% if banner.present? %>
+    <span class="search-label">
+    <i class="fa fa-arrow-up" style="font-size: 200%"></i><br /><br />
+    Type something above to search for your superhero.
+    </span>
+  <% end %>
+
+  <% if defined?(results) && results.length == 0 %>
+    <span class="search-label">
+      <i class="fa fa-frown-o" style="font-size: 200%"></i><br /><br />
+      Opps! We could not find any results...<br /><br />Try with something different or
+      <%= link_to new_superhero_path do %>
+        ADD A NEW HERO
+      <% end %>
+    </span>
+  <% end %>
+
+</div>

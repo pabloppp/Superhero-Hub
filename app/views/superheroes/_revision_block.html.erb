@@ -1,0 +1,11 @@
+<% if rev[field].present? %>
+  <div class="meta-block">
+    <div class="block <%= 'same' if rev[field] == @superhero[field] %>">
+      <b><%= field %>:</b>
+      <%= simple_format(rev[field]) %>
+    </div><!--
+    --><div class="block">
+      <%= simple_format(@superhero[field]) %>
+    </div>
+  </div>
+<% end %>

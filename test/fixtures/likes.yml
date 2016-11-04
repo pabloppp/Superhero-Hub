@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ip: MyString
+  value: 
+  superhero_id: 
+
+two:
+  ip: MyString
+  value: 
+  superhero_id: 

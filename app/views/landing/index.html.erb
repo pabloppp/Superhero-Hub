@@ -1,0 +1,24 @@
+
+
+<div class='navbar'>
+  <%= link_to '/', :class=>"title" do %>
+    SuperheroHub
+  <% end %>
+  <%= link_to new_superhero_path, :class=>"button-right"  do %>
+    <i class="fa fa-plus"></i> New Hero
+  <% end %>
+</div>
+
+<%= render partial: 'superheroes/search_form', locals: {banner: true}-%>
+
+<div class="herolist-container">
+  <span class="section">
+    Latest added superheroes (
+    <%= link_to superheroes_path, :class=>"title" do %>show all<% end %>
+     )
+  </span>
+  <% @superheroes.each do |superhero| -%><!--
+  --><%= render partial: 'superheroes/superhero', locals: {superhero:superhero} -%><!--
+  --><% end -%>
+
+</div>

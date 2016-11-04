@@ -93,8 +93,8 @@ var dolike = function(id, value){
   var form = $('#like-form');
   $.ajax({
     type: "POST",
-    url: `/superheroes/${id}/likes`,
-    data: `like[value]=${value}`, // serializes the form's elements.
+    url: '/superheroes/'+id+'/likes',
+    data: 'like[value]='+value, // serializes the form's elements.
     success: function(data){
       //alert(data); // show response from the php script.
       var oldV = current_user_likes;

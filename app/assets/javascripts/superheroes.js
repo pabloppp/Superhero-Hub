@@ -99,7 +99,7 @@ var dolike = function(id, value){
       //alert(data); // show response from the php script.
       var oldV = current_user_likes;
       current_user_likes = value;
-      var likesAvg = Number(document.getElementById('likesAvg').innerHTML)
+      var likesAvg = Number(document.getElementById('likesAvg').innerHTML).toFixed(1)
       var sum = totalLikes*likesAvg
       sum = sum-oldV+current_user_likes;
       if(oldV === 0) totalLikes += 1;

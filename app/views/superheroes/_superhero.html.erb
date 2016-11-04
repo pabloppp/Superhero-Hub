@@ -2,7 +2,7 @@
     <%= image_tag superhero.image_url, :class=>'preview-image' %>
     <div class="likes">
       <i class="fa fa-heart"></i>
-      <%= superhero.likes.present? ? superhero.likes.inject(0){|sum,x| sum + x.value }*1.0/superhero.likes.length : 0 %>
+      <%= superhero.likes.present? ? (superhero.likes.inject(0){|sum,x| sum + x.value }*1.0/superhero.likes.length).round(1) : 0 %>
     </div>
     <div class="foot">
       <%= superhero.name.split(',')[0] %>
